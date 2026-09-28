@@ -305,6 +305,52 @@ details p{margin-top:10px;color:#5C5C7A;max-width:720px;font-size:15.5px}
 footer{background:#14102B;color:#8F8ABD;padding:36px 0;font-size:13.5px}
 footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;align-items:center}
 footer .f-logo{display:flex;align-items:center;gap:8px;color:#fff;font-weight:900;font-size:16px}
+
+/* ===== чат «Рублик» — финконсультант ===== */
+.rc-root{position:fixed;right:18px;bottom:18px;z-index:9999;font-family:inherit}
+.rc-fab{width:58px;height:58px;border-radius:50%;border:0;background:linear-gradient(135deg,#6C5CE7,#5A3FD1);color:#fff;font-size:25px;cursor:pointer;box-shadow:0 10px 26px rgba(108,92,231,.45);display:flex;align-items:center;justify-content:center;position:relative;transition:transform .18s}
+.rc-fab:hover{transform:scale(1.07)}
+.rc-dot{position:absolute;top:4px;right:4px;width:13px;height:13px;border-radius:50%;background:#2ECC71;border:2.5px solid #fff}
+.rc-teaser{position:absolute;right:68px;bottom:10px;background:#fff;border:1px solid #EFEDFA;border-radius:14px 14px 4px 14px;padding:10px 14px;font-size:13.5px;font-weight:700;color:#221A4A;box-shadow:0 8px 22px rgba(34,26,74,.14);cursor:pointer;white-space:nowrap;display:none;align-items:center;gap:10px}
+.rc-teaser .rc-tx{color:#9A96C2;font-weight:800;font-size:12px;padding:2px 4px}
+.rc-win{position:absolute;right:0;bottom:70px;width:340px;max-width:calc(100vw - 24px);height:460px;max-height:calc(100vh - 104px);background:#fff;border-radius:18px;box-shadow:0 18px 50px rgba(34,26,74,.28);display:flex;flex-direction:column;overflow:hidden;border:1px solid #EFEDFA;animation:rcIn .22s ease}
+@keyframes rcIn{from{opacity:0;transform:translateY(14px) scale(.97)}to{opacity:1;transform:none}}
+.rc-head{background:linear-gradient(135deg,#2A2158,#221A4A);color:#fff;padding:12px 14px;display:flex;align-items:center;gap:10px;flex:none}
+.rc-ava{width:36px;height:36px;border-radius:12px;background:linear-gradient(135deg,#F5A623,#FFC94D);display:flex;align-items:center;justify-content:center;font-size:20px;flex:none}
+.rc-head b{font-size:14.5px;display:block;line-height:1.25}
+.rc-status{font-size:11.5px;color:#B9B2EA;font-weight:700}
+.rc-status i{color:#2ECC71;font-style:normal}
+.rc-close{margin-left:auto;background:rgba(255,255,255,.12);border:0;color:#fff;width:28px;height:28px;border-radius:9px;cursor:pointer;font-size:13px}
+.rc-close:hover{background:rgba(255,255,255,.22)}
+.rc-msgs{flex:1;overflow-y:auto;padding:12px;background:#F8F7FE;display:flex;flex-direction:column;gap:8px}
+.rc-m{display:flex;gap:7px;align-items:flex-end;max-width:88%}
+.rc-me{align-self:flex-end;flex-direction:row-reverse}
+.rc-mava{font-size:17px;flex:none;width:26px;text-align:center}
+.rc-bub{background:#fff;border:1px solid #EFEDFA;border-radius:13px 13px 13px 4px;padding:9px 12px;font-size:13.5px;line-height:1.45;color:#221A4A;white-space:pre-line;word-wrap:break-word}
+.rc-me .rc-bub{background:#6C5CE7;color:#fff;border:0;border-radius:13px 13px 4px 13px}
+.rc-typing .rc-bub{display:flex;gap:4px;padding:13px 14px}
+.rc-d{width:7px;height:7px;border-radius:50%;background:#B9B2EA;animation:rcB 1.2s infinite}
+.rc-d:nth-child(2){animation-delay:.2s}.rc-d:nth-child(3){animation-delay:.4s}
+@keyframes rcB{0%,60%,100%{opacity:.3;transform:translateY(0)}30%{opacity:1;transform:translateY(-3px)}}
+.rc-chips{display:flex;gap:6px;padding:8px 10px;overflow-x:auto;background:#fff;border-top:1px solid #F1EFFC;flex:none}
+.rc-chip{border:1px solid #E4E1F7;background:#fff;color:#4A4A68;font-size:12px;font-weight:700;border-radius:99px;padding:6px 11px;cursor:pointer;white-space:nowrap;flex:none;font-family:inherit}
+.rc-chip:hover{background:#F4F2FE;color:#6C5CE7;border-color:#6C5CE7}
+.rc-inputrow{display:flex;gap:8px;padding:10px;background:#fff;border-top:1px solid #F1EFFC;flex:none}
+.rc-inputrow input{flex:1;border:1px solid #E4E1F7;border-radius:12px;padding:10px 12px;font:inherit;font-size:13.5px;outline:none;color:#221A4A;min-width:0;background:#fff}
+.rc-inputrow input:focus{border-color:#6C5CE7}
+.rc-send{border:0;background:#6C5CE7;color:#fff;border-radius:12px;width:42px;cursor:pointer;font-size:16px;flex:none}
+.rc-send:hover{background:#5A3FD1}
+.rc-ic{display:block;border-radius:50%}
+.rc-fab .rc-ic{width:31px;height:31px}
+.rc-ava{background:none}
+.rc-ava .rc-ic{width:34px;height:34px}
+.rc-mava{height:26px}
+.rc-mava .rc-ic{width:26px;height:26px}
+@media(max-width:560px){
+  .rc-root{right:12px;bottom:12px}
+  .rc-win{right:-6px;bottom:64px;height:72vh;max-height:72vh}
+  .rc-inputrow input{font-size:16px}
+}
 </style>
 </head>
 <body>
@@ -1134,6 +1180,162 @@ function updTerm(){
   el.innerHTML = rub(GOAL) + ' ₽ ÷ ' + rub(v) + ' ₽ = <b>' + weeks + ' ' + (weeks === 1 ? 'неделя' : (weeks < 5 ? 'недели' : 'недель')) + '</b> (≈ ' + months + ' мес.)<br><span style="font-size:14px;font-weight:700">' + tip + '</span>';
 }
 renderLesson();
+</script>
+<script>
+/* ===== чат «Рублик»: финконсультант (без внешних сервисов) ===== */
+(function(){
+  var CID = 113130686, STORE = 'rublik_chat_v1', ICON = 'data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2048%2048%22%3E%3Ccircle%20cx%3D%2224%22%20cy%3D%2224%22%20r%3D%2224%22%20fill%3D%22%23F5A623%22%2F%3E%3Ccircle%20cx%3D%2224%22%20cy%3D%2224%22%20r%3D%2219.5%22%20fill%3D%22%23FFC94D%22%2F%3E%3Cpath%20fill%3D%22%23E09A00%22%20transform%3D%22translate%2810.5899%2038.2500%29%20scale%280.019089%20-0.019089%29%22%20d%3D%22M673%201214V877H710Q822%20877%20883.0%20916.5Q944%20956%20944.0%201046.0Q944%201136%20883.0%201175.0Q822%201214%20710%201214ZM288%201493H751Q1036%201493%201188.5%201386.5Q1341%201280%201341.0%201046.0Q1341%20812%201188.5%20705.0Q1036%20598%20751%20598H673V456H1102V227H673V0H288V227H64V456H288V598H64V877H288Z%22%2F%3E%3C%2Fsvg%3E';
+  function lsGet(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
+  function lsSet(k,v){ try{ localStorage.setItem(k,v); }catch(e){} }
+
+  /* База знаний: только финансовая грамотность */
+  var KB = [
+    {k:['привет','здравств','добрый день','добрый вечер','доброе утро','хай','салют'],
+     a:'Привет! 👋 Я Рублик — консультант по финансовой грамотности. Спрашивайте про копилку, бюджет, карты, кэшбэк, налоги или безопасность — объясню простыми словами 🪙'},
+    {k:['как дела','как ты','что умеешь','чем помочь','помощь','помоги','help'],
+     a:'Мои дела — рублёвые 😄 Помогу разобраться с деньгами: как копить на цель, делить доход по трём банкам, нужна ли ребёнку карта, что такое кэшбэк и как не попасться мошенникам. Просто спросите!'},
+    {k:['кто ты','ты бот','ты человек','ты робот','как тебя зовут','кто такой рублик'],
+     a:'Я Рублик 🪙 — виртуальный консультант курса финансовой грамотности «Рублик». Отвечаю только на вопросы про деньги и финансовую грамотность — без рекламы и посторонних тем 🙂'},
+    {k:['спасибо','благодар','спс','thanks'],
+     a:'Всегда рад помочь! 🪙 Если появится вопрос про деньги — пишите, я на связи.'},
+    {k:['три банки','трех банок','правило трех','правило банок','банки','банку','50/40/10','50 40 10','пропорц','делить деньги','распределять деньги','распредил'],
+     a:'Правило трёх банок 🐷 — главный навык курса. Как только деньги пришли, сразу делим:\n💸 Трати — 50% на каждый день\n🐷 Копи — 40% на большую цель\n🎁 Делись — 10% на подарки и добрые дела\nСекреты: делить нужно сразу, а не «из остатков»; банку «Копи» не трогаем; банки не требуют точности — округляйте! Банки наполняются вместе с суммой: больше доход — полнее все три.'},
+    {k:['копит','накоп','копилк','как отклад','откладыв','на цель','большая цель','мечта'],
+     a:'Копить — это игра с планом 🎯 Три шага:\n1️⃣ Цель: что именно и за сколько (например, наушники за 4 000 ₽)\n2️⃣ Взнос: сколько откладывать каждую неделю\n3️⃣ Срок: цель ÷ взнос = сколько недель ждать\nПример: 4 000 ₽ ÷ 500 ₽ = 8 недель. Отложенное живёт в банке «Копи» и не тратится 😉'},
+    {k:['формул','сбережен','доход','расход'],
+     a:'У всех денег одна простая формула 🧮\nСБЕРЕЖЕНИЯ = ДОХОДЫ − РАСХОДЫ\nДоходы — всё, что приходит: карманные, подарки, подработка. Расходы — всё, что уходит: сладости, кафе, подписки. Хочешь больше сбережений — увеличь доходы или уменьши расходы. Всё остальное — детали 😄'},
+    {k:['карманн','сколько давать','сколько выделять'],
+     a:'Карманные деньги — главный тренажёр финансовой грамотности 🪙 Советы:\n• Регулярность важнее суммы: лучше 300 ₽ каждый понедельник, чем 1000 ₽ «когда-нибудь»\n• Ориентиры: 8–10 лет — 100–500 ₽ в неделю, 11–13 лет — 500–1000 ₽ (сумму каждая семья выбирает сама)\n• Деньги отдали — не контролируйте каждую покупку: ошибка на 200 ₽ в 10 лет дешевле, чем на 20 000 ₽ в 25\nДелить карманные по трём банкам учим прямо в демо-уроке на сайте.'},
+    {k:['детская карта','детскую карту','карта ребенку','карту ребенку','карта для ребенка','карта','карты','с какого возраста карта','оформить карту'],
+     a:'Детская карта — полезный инструмент 💳 Обычно так:\n• С 6–8 лет — дополнительная карта к счёту родителя: у ребёнка своя, у родителя — лимиты и уведомления о каждой покупке\n• С 14 лет подросток может оформить свою карту (с согласия родителей)\nЭто безопаснее наличных: карту можно мгновенно заблокировать, а траты видны в приложении. Как пользоваться картой осознанно — учим на уровне «Первые деньги».'},
+    {k:['сбп','быстрые платеж','быстрый платеж','перевод без комисс','перевести деньги','переводы'],
+     a:'СБП — Система быстрых платежей ⚡ Переводы по номеру телефона между любыми банками прямо из приложения. Главное: по закону переводы через СБП до 100 000 ₽ в месяц — без комиссии. Правило безопасности: переводите только знакомым людям и никому не сообщайте коды из СМС.'},
+    {k:['кэшбэк','кешбэк','кешбек','cashback','возврат с покупок'],
+     a:'Кэшбэк — возврат части денег за покупку 💸 Что важно знать:\n• Кэшбэк рублями честнее «баллов благодарности»\n• Категории повышенного кэшбэка меняются — проверяйте условия\n• Кэшбэк — не повод тратить больше: скидка на ненужное — это всё равно трата\nОсознанному потреблению (кэшбэк, скидки, ловушки маркетинга) посвящён уровень «Умный потребитель».'},
+    {k:['ндфл','налог','вычет','налоговая'],
+     a:'НДФЛ — налог на доходы физических лиц 🏛 Базовая ставка 13% (при больших доходах — выше, шкала прогрессивная). Школьнику важно понимать:\n• Налог платится с дохода, а не с карманных денег\n• Начал подрабатывать — можно оформить самозанятость: налог 4–6% вместо НДФЛ\n• Налоговые вычеты возвращают часть потраченного на учёбу и лечение — этим обычно пользуются родители\nНалоги и инвестиции разбираем на уровне «Финансовая независимость».'},
+    {k:['иис','инвестиц','акци','акции','акций','бирж','биржа','бирже','вложит','облигац'],
+     a:'ИИС — индивидуальный инвестиционный счёт 📈 Счёт для покупки акций и облигаций с налоговой льготой: можно вернуть 13% от взноса (вычет типа А). Но помните:\n• Открыть ИИС можно с 18 лет (подростку — только через родителей)\n• Инвестиции — это риск: цена может и вырасти, и упасть\n• Сначала — финансовая база, потом биржа. Наш курс как раз её даёт 😉'},
+    {k:['авито','продать','продаж','объявлен','барахолк','ненужные вещи'],
+     a:'Продажа ненужного — самый простой первый доход 📦 Советы:\n• Честные фото и описание продают лучше звонких слов\n• Цену смотрите по похожим объявлениям и ставьте на 5–10% ниже\n• Безопасность: встречайтесь в людных местах, деньги — в момент передачи вещи\nЗаработанное — сразу в три банки! Это практика уровня «Умный потребитель».'},
+    {k:['вклад','депозит','под процент','процент'],
+     a:'Вклад — когда банк сам платит вам за хранение денег 🏦 Ставка зависит от ключевой (обычно 5–20% годовых), а вклады до 1,4 млн ₽ застрахованы государством. Отличие от копилки «под подушкой»: деньги работают и не съедаются инфляцией. Нюанс — у вклада есть срок: заберёте раньше — потеряете проценты.'},
+    {k:['инфляц','дорожа','подорожа','цены растут','цены поднял'],
+     a:'Инфляция — деньги постепенно теряют покупательную способность 📉 Сегодня мороженое 100 ₽, через пару лет — 120 ₽. Поэтому:\n• Копить «под подушкой» — медленно терять деньги\n• Держите в заначке только небольшой резерв, остальное — на цель или во вклад\nДети понимают инфляцию мгновенно, когда любимые сладкости дорожают 😄'},
+    {k:['мошенн','обман','код из смс','смс код','звонок из банка','выиграл','приз','cvv','безопасн','украли деньги','взлом','развод'],
+     a:'Главные правила финансовой безопасности 🛡\n• НИКОМУ не сообщайте коды из СМС и данные карты — даже «сотруднику банка»\n• «Вы выиграли приз, оплатите доставку» — всегда обман\n• Звонок «из банка» с просьбой срочно что-то сделать — кладите трубку и перезвоните сами по номеру на карте\n• Ребёнку: любые странные сообщения про деньги — сразу показываем родителям\nЭтому посвящён отдельный блок курса.'},
+    {k:['кредит','рассрочк','в долг','займ','микрозайм','долг'],
+     a:'Кредит — чужие деньги под проценты ⚠️ Телефон за 30 000 ₽ в кредит на год реально обойдётся в 34–36 000 ₽. До 18 лет кредит не выдают — и это к лучшему. Рассрочка честнее: процентов нет, но за пропуск платежа — штраф. Золотое правило курса: в долг не берём даже на «хочу» — сначала копим в банке «Копи» 🐷'},
+    {k:['заработ','подработк','самозанят','первый доход','подработать'],
+     a:'Первый доход — лучший учитель 💪 Что подходит подростку:\n• Продать ненужное на «Авито»\n• Помощь соседям: выгул собаки, полив цветов, курьерские доставки\n• Мини-услуги: помощь младшим с уроками, с компьютером\nС 14 лет можно оформить самозанятость (налог всего 4–6%). Главное — доход не «на всё сразу», а по трём банкам!'},
+    {k:['курс доллара','курс долл','курс евр','курс валют','доллар','евро','валют','обмен валют','конверт'],
+     a:'Курс валют — это цена одной валюты, выраженная в другой 🔄 Например, сколько рублей стоит один доллар. Курс меняется каждый день: на него влияют торговый баланс, процентные ставки и ожидания рынков.\nДля семьи это значит: поездки и покупки в валюте то дешевеют, то дорожают. Лайфхак: большие валютные покупки планируйте заранее и следите за курсом — но не играйте в спекуляции 😉'},
+        {k:['курс','сколько стоит','цена','тариф','стоимост','записат','возраст','класс','сколько лет','купить'],
+     a:'Курс «Рублик» — интерактивная финансовая грамотность для 2–11 классов 🎓 4 уровня: «Первые деньги» → «Умный потребитель» → «Личные финансы» → «Финансовая независимость». Уроки — как маленькие игры: банки, цели, квизы, миссии и дипломы.\nТарифы раннего доступа: 2 900 ₽ (один уровень) · 5 900 ₽ (все уровни) · 7 900 ₽ (семейный, до 3 детей). Демо-урок бесплатный — прямо на сайте!'},
+    {k:['демо','демо урок','демо-урок','попробовать','протестиров','бесплатн','урок показать'],
+     a:'Демо-урок — 15 минут, бесплатно и без регистрации 🎮 Это настоящий урок «Бюджет» для 5–7 классов: формула денег, правило трёх банок и игра «4 недели до цели» — принимаете решения вы, а копилка реагирует. Есть и мини-игра «Хочу/Нужно» для 8–10 лет. Кнопка «Демо-урок» — вверху страницы.'}
+  ];
+  var HEAVY = {'сбп':1,'иис':1,'ндфл':1,'вклад':1,'демо':1,'курс':1,'долг':1,'спс':1,'хай':1,'cvv':1,'акци':1,'бирж':1,'приз':1};
+  var FALLBACK = 'Я консультирую только по финансовой грамотности 🪙 Спросите, например: «Как копить на цель?», «Что такое правило трёх банок?» или «Нужна ли ребёнку банковская карта?»';
+  var GREETING = 'Привет! 👋 Я Рублик — консультант по финансовой грамотности.\nПомогу с копилкой, бюджетом, картами, кэшбэком и безопасностью. Или нажмите вопрос ниже 👇';
+
+  function norm(s){ return ' ' + s.toLowerCase().replace(/ё/g,'е').replace(/!/g,' ').replace(/\?/g,' ') + ' '; }
+  function findAnswer(q){
+    var s = norm(q), best = null, bs = -1, bl = 0;
+    for (var i = 0; i < KB.length; i++){
+      var c = 0, L = 0;
+      for (var j = 0; j < KB[i].k.length; j++){
+        var kw = KB[i].k[j];
+        if (s.indexOf(kw) !== -1){ c += (kw.length >= 5 ? 2 : 1) + (HEAVY[kw] ? 1 : 0); if (kw.length > L) L = kw.length; }
+      }
+      var sc = c * 10 + L;
+      if (c > 0 && sc > bs){ bs = sc; best = KB[i]; }
+    }
+    return (best && bs >= 20) ? best : null;
+  }
+  function esc(s){ return s.split('&').join('&amp;').split('<').join('&lt;').split('>').join('&gt;'); }
+
+  /* разметка */
+  var root = document.createElement('div');
+  root.className = 'rc-root';
+  root.innerHTML = '<div class="rc-teaser" id="rcTeaser"><span data-ym-goal="chat_teaser_click">👋 Вопрос про деньги?</span><span class="rc-tx" data-ym-goal="chat_teaser_close" title="Скрыть">✕</span></div>'
+    + '<button class="rc-fab" data-ym-goal="chat_open" aria-label="Открыть чат"><img class="rc-ic" src="' + ICON + '" alt="Рублик"><span class="rc-dot"></span></button>'
+    + '<div class="rc-win" hidden>'
+    + '<div class="rc-head"><span class="rc-ava"><img class="rc-ic" src="' + ICON + '" alt="Рублик"></span><div><b>Рублик</b><span class="rc-status"><i>●</i> онлайн · финконсультант</span></div><button class="rc-close" data-ym-goal="chat_close" aria-label="Закрыть">✕</button></div>'
+    + '<div class="rc-msgs"></div>'
+    + '<div class="rc-chips"></div>'
+    + '<div class="rc-inputrow"><input type="text" placeholder="Спросите про деньги…" maxlength="300"><button class="rc-send" aria-label="Отправить">➤</button></div>'
+    + '</div>';
+  document.body.appendChild(root);
+
+  var fab = root.querySelector('.rc-fab'), win = root.querySelector('.rc-win'),
+      msgs = root.querySelector('.rc-msgs'), input = root.querySelector('input'),
+      teaser = root.querySelector('.rc-teaser'), chips = root.querySelector('.rc-chips');
+
+  var CHIPS = ['Правило трёх банок 🐷','Как копить на цель? 🎯','Что такое кэшбэк? 💸','Нужна ли ребёнку карта? 💳'];
+  CHIPS.forEach(function(t){
+    var b = document.createElement('button');
+    b.className = 'rc-chip'; b.textContent = t;
+    b.onclick = function(){ if (typeof ym === 'function'){ try { ym(CID, 'reachGoal', 'chat_chip', { chip: t }); } catch(e){} } send(t); };
+    chips.appendChild(b);
+  });
+
+  function addMsg(w, t){
+    var d = document.createElement('div');
+    d.className = 'rc-m' + (w === 'me' ? ' rc-me' : ' rc-bot');
+    d.innerHTML = (w === 'me' ? '' : '<span class="rc-mava"><img class="rc-ic" src="' + ICON + '" alt=""></span>') + '<div class="rc-bub">' + esc(t).split('\n').join('<br>') + '</div>';
+    msgs.appendChild(d); msgs.scrollTop = msgs.scrollHeight;
+  }
+  function typing(){
+    var t = document.createElement('div');
+    t.className = 'rc-m rc-bot rc-typing';
+    t.innerHTML = '<span class="rc-mava"><img class="rc-ic" src="' + ICON + '" alt=""></span><div class="rc-bub"><span class="rc-d"></span><span class="rc-d"></span><span class="rc-d"></span></div>';
+    msgs.appendChild(t); msgs.scrollTop = msgs.scrollHeight; return t;
+  }
+  function agentSay(text, noDelay){
+    if (noDelay){ addMsg('bot', text); return; }
+    var t = typing();
+    setTimeout(function(){ t.remove(); addMsg('bot', text); save(); }, 650 + Math.random() * 550);
+  }
+  function history(){
+    try { return JSON.parse(lsGet(STORE) || '[]') || []; } catch(e){ return []; }
+  }
+  function save(){
+    var out = [];
+    for (var i = 0; i < msgs.children.length; i++){
+      var m = msgs.children[i];
+      if (m.classList.contains('rc-typing')) continue;
+      out.push({ w: m.classList.contains('rc-me') ? 'me' : 'bot', t: m.querySelector('.rc-bub').textContent });
+    }
+    lsSet(STORE, JSON.stringify(out.slice(-40)));
+  }
+  function send(text){
+    text = (text || '').trim(); if (!text) return;
+    addMsg('me', text); save();
+    var ans = findAnswer(text);
+    if (typeof ym === 'function'){ try { ym(CID, 'reachGoal', 'chat_message', { q: text.slice(0, 100), hit: ans ? 1 : 0 }); } catch(e){} }
+    agentSay(ans ? ans.a : FALLBACK);
+  }
+
+  function open(){
+    win.hidden = false; fab.style.display = 'none'; teaser.style.display = 'none';
+    lsSet(STORE + '_seen', '1');
+    if (!msgs.children.length){
+      var h = history();
+      if (h.length){ h.forEach(function(m){ addMsg(m.w, m.t); }); }
+      else { agentSay(GREETING, true); }
+    }
+    setTimeout(function(){ input.focus(); }, 60);
+  }
+  function close(){ win.hidden = true; fab.style.display = 'flex'; }
+
+  fab.onclick = open;
+  root.querySelector('.rc-close').onclick = close;
+  root.querySelector('.rc-send').onclick = function(){ send(input.value); input.value = ''; };
+  input.addEventListener('keydown', function(e){ if (e.key === 'Enter'){ send(input.value); input.value = ''; } });
+  teaser.onclick = function(e){ if (e.target.classList.contains('rc-tx')) { teaser.style.display = 'none'; return; } open(); };
+  setTimeout(function(){ if (win.hidden && lsGet(STORE + '_seen') !== '1') teaser.style.display = 'flex'; }, 6000);
+})();
 </script>
 </body>
 </html>
