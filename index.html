@@ -268,7 +268,8 @@ footer .f-logo{display:flex;align-items:center;gap:8px;color:#fff;font-weight:90
       <a href="#pricing">Тарифы</a>
       <a href="#faq">FAQ</a>
     </nav>
-    <a class="btn sm" href="#demo" style="margin-left:auto">Попробовать демо</a>
+    <a class="btn sm ghost" href="app/" style="margin-left:auto">🔑 Личный кабинет</a>
+    <a class="btn sm" href="#demo">Демо-урок</a>
   </div>
 </header>
 
@@ -566,6 +567,7 @@ footer .f-logo{display:flex;align-items:center;gap:8px;color:#fff;font-weight:90
 function $(s){ return document.querySelector(s); }
 function $all(s){ return Array.prototype.slice.call(document.querySelectorAll(s)); }
 function rub(n){ return n.toLocaleString('ru-RU'); }
+function lsSetLocal(k,v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
 
 /* появление секций при скролле */
 (function(){
@@ -653,6 +655,7 @@ function mgAnswer(c){
 function mgNext(){
   mg.i++;
   mg.phase = (mg.i >= MG.length) ? 'end' : 'play';
+  if(mg.phase === 'end'){ lsSetLocal('rublik_mini_game', { right: mg.right, total: MG.length, date: Date.now() }); }
   mgRender();
 }
 mgRender();
@@ -941,8 +944,9 @@ function lessonHTML(s){
       + '</div></div>'
       + '<p class="l-note" style="text-align:center">Это демо. В полном курсе — дипломы за каждый модуль и портфель достижений.</p>'
       + '<div class="slide-nav" style="justify-content:center">'
+      + '<a class="btn amber" href="app/">📁 Мой кабинет →</a>'
       + '<button class="btn ghost" onclick="window.print()">🖨 Распечатать</button>'
-      + '<button class="btn" onclick="lsRestart()">Пройти демо ещё раз ↻</button>'
+      + '<button class="btn" onclick="lsRestart()">Ещё раз ↻</button>'
       + '</div>';
   }
   return h;
@@ -1004,6 +1008,7 @@ function lsQuizPick(oi){
 function lsMakeDiploma(){
   var inp = $('#dname');
   L.name = (inp && inp.value.trim()) ? inp.value.trim() : 'Юный финансист';
+  lsSetLocal('rublik_demo_lesson', { name: L.name, score: L.quizScore, date: Date.now() });
   lsGo(16);
 }
 
