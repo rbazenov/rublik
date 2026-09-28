@@ -15,16 +15,17 @@ svg{display:block}
 .wrap-pad{padding:26px 30px 46px;max-width:1000px;margin:0 auto}
 /* ---------- каркас ---------- */
 .app{display:grid;grid-template-columns:252px 1fr;min-height:100vh}
-.side{background:linear-gradient(180deg,#2A2158,#221A4A);color:#fff;padding:22px 16px;display:flex;flex-direction:column;gap:14px;position:sticky;top:0;height:100vh}
+.side{background:linear-gradient(180deg,#2A2158,#221A4A);color:#fff;padding:22px 16px;display:flex;flex-direction:column;gap:14px;position:sticky;top:0;height:100vh;overflow-y:auto}
 .logo{display:flex;align-items:center;gap:9px;font-weight:900;font-size:19px;padding:0 6px}
 .logo small{color:#8F87C7;font-weight:700;font-size:11px}
 .side-profile{background:rgba(255,255,255,.06);border-radius:18px;padding:14px;display:flex;gap:12px;align-items:center}
 .avatar-big{width:52px;height:52px;flex:none;border:0;border-radius:16px;background:rgba(255,255,255,.12);font-size:28px;cursor:pointer;transition:.15s}
 .avatar-big:hover{background:rgba(255,255,255,.22)}
-.side-profile b{display:block;font-size:15px;line-height:1.25}
-.side-profile span{font-size:12px;color:#B9B2EA;font-weight:700}
+.side-profile>div{flex:1;min-width:0}
+.side-profile b{display:block;font-size:15px;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.side-profile span{font-size:12px;color:#B9B2EA;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
 .side-nav{display:flex;flex-direction:column;gap:4px}
-.snav{display:flex;align-items:center;gap:10px;border:0;cursor:pointer;text-align:left;font-weight:800;font-size:14.5px;color:#B9B2EA;background:transparent;border-radius:13px;padding:11px 13px;transition:.15s}
+.snav{display:flex;align-items:center;gap:10px;border:0;cursor:pointer;text-align:left;font-weight:800;font-size:14.5px;color:#B9B2EA;background:transparent;border-radius:13px;padding:11px 13px;transition:.15s;white-space:nowrap}
 .snav:hover{background:rgba(255,255,255,.08);color:#fff}
 .snav.on{background:#6C5CE7;color:#fff;box-shadow:0 6px 16px rgba(108,92,231,.4)}
 .snav .badge{margin-left:auto;font-size:11px;font-weight:900;background:#F5A623;color:#221A4A;border-radius:99px;padding:2px 8px}
@@ -35,16 +36,25 @@ svg{display:block}
 .xpbar i{display:block;height:100%;background:linear-gradient(90deg,#F5A623,#FFD466);border-radius:99px;transition:width .4s}
 .side-back{margin-top:auto;text-align:center;font-size:13px;font-weight:800;color:#8F87C7;padding:10px;border-radius:12px}
 .side-back:hover{background:rgba(255,255,255,.08);color:#fff}
+.burger{display:none;width:42px;height:42px;flex:none;border:0;border-radius:13px;background:rgba(255,255,255,.12);color:#fff;font-size:19px;cursor:pointer;align-items:center;justify-content:center}
+.burger:hover{background:rgba(255,255,255,.22)}
+.menu-head{display:none;justify-content:space-between;align-items:center;padding:6px 10px 10px;color:#B9B2EA;font-weight:900;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase}
+.menu-close{width:38px;height:38px;border:0;border-radius:12px;background:rgba(255,255,255,.1);color:#fff;font-size:15px;font-weight:800;cursor:pointer}
+.menu-close:hover{background:rgba(255,255,255,.2)}
 .content{min-width:0}
 @media(max-width:920px){
   .app{grid-template-columns:1fr}
-  .side{position:static;height:auto;flex-direction:row;flex-wrap:wrap;align-items:center;gap:10px}
-  .side-nav{flex-direction:row;overflow-x:auto;width:100%;padding-bottom:4px}
-  .snav{white-space:nowrap;flex:none}
-  .side-xp{display:none}
+  .side{position:static;height:auto;flex-direction:column;align-items:stretch;gap:10px;padding:14px 16px}
+  .side .logo{display:none}
+  .burger{display:flex}
+  .side-nav{display:none;width:100%}
+  .side.menu-open .side-nav{display:flex;flex-direction:column;gap:4px;background:rgba(255,255,255,.07);border-radius:16px;padding:8px;animation:menuIn .18s ease}
+  .menu-head{display:flex}
+  .side-xp{width:100%}
   .side-back{margin:0}
   .wrap-pad{padding:20px 16px 40px}
 }
+@keyframes menuIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
 /* ---------- элементы ---------- */
 .tab{display:none}
 .tab.on{display:block}
@@ -163,12 +173,14 @@ label.f{display:block;font-size:12.5px;font-weight:800;color:#5C5C7A;margin:0 0 
 <body>
 <div class="app">
   <aside class="side">
-    <a class="logo" href="../"><svg width="28" height="28" viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#F5A623"/><circle cx="24" cy="24" r="17" fill="#FFC94D"/><text x="24" y="32" text-anchor="middle" font-size="24" font-weight="900" fill="#E09A00" font-family="Arial">₽</text></svg>Рублик <small>· кабинет</small></a>
+    <a class="logo" href="../"><svg width="28" height="28" viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#F5A623"/><circle cx="24" cy="24" r="17" fill="#FFC94D"/><text x="24" y="32" text-anchor="middle" font-size="24" font-weight="900" fill="#E09A00" font-family="Arial">₽</text></svg><span class="logo-word">Рублик <small>· кабинет</small></span></a>
     <div class="side-profile">
       <button class="avatar-big" id="avatarBig" onclick="openAvatarPicker()" title="Сменить аватар">🦉</button>
       <div><b id="sideName">Юный финансист</b><span id="sideRank">🐣 Новичок</span></div>
+      <button class="burger" onclick="menuToggle()" aria-label="Открыть меню">☰</button>
     </div>
     <nav class="side-nav" id="sideNav">
+      <div class="menu-head"><span>Меню</span><button class="menu-close" onclick="menuClose()" aria-label="Закрыть меню">✕</button></div>
       <button class="snav on" data-tab="home" onclick="switchTab('home')">🏠 Главная</button>
       <button class="snav" data-tab="map" onclick="switchTab('map')">🗺 Программа</button>
       <button class="snav" data-tab="piggy" onclick="switchTab('piggy')">🐷 Копилка</button>
@@ -740,6 +752,11 @@ function renderAll(){
   if(location.search.indexOf('demo=1') >= 0 && !lsGet(KEY)){ loadDemoData(); }
   renderAll();
 })();
+/* ---- мобильное меню (гамбургер) ---- */
+function menuOpen(){ document.querySelector('.side').classList.add('menu-open'); }
+function menuClose(){ document.querySelector('.side').classList.remove('menu-open'); }
+function menuToggle(){ document.querySelector('.side').classList.toggle('menu-open'); }
+document.getElementById('sideNav').addEventListener('click', function(e){ if (e.target.closest('.snav')) menuClose(); });
 </script>
 </body>
 </html>
