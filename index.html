@@ -102,7 +102,8 @@ section[id]{scroll-margin-top:84px}
 .hero{background:radial-gradient(1100px 520px at 85% -10%,#7C6CF2 0%,transparent 60%),radial-gradient(800px 460px at -10% 115%,#5A3FD1 0%,transparent 55%),#221A4A;color:#fff;padding:84px 0 100px;position:relative;overflow:hidden}
 .hero .wrap{display:grid;grid-template-columns:1.12fr .88fr;gap:48px;align-items:center;position:relative;z-index:2}
 .badge{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:800;background:rgba(255,201,77,.16);color:#FFC94D;border:1px solid rgba(255,201,77,.4);border-radius:999px;padding:7px 16px;margin-bottom:22px}
-.hero h1{font-size:clamp(34px,4.6vw,58px);line-height:1.05;letter-spacing:-.025em;font-weight:900}
+.hero h1{font-size:clamp(26px,4.4vw,55px);line-height:1.05;letter-spacing:-.025em;font-weight:900}
+.hero h1 .l1{white-space:nowrap}
 .hero h1 em{font-style:normal;color:#FFC94D}
 .hero .sub{margin:22px 0 30px;font-size:18px;color:#C9C3F5;max-width:560px}
 .hero-cta{display:flex;gap:14px;flex-wrap:wrap}
@@ -314,6 +315,7 @@ footer .f-logo{display:flex;align-items:center;gap:8px;color:#fff;font-weight:90
 .rc-teaser{position:absolute;right:68px;bottom:10px;background:#fff;border:1px solid #EFEDFA;border-radius:14px 14px 4px 14px;padding:10px 14px;font-size:13.5px;font-weight:700;color:#221A4A;box-shadow:0 8px 22px rgba(34,26,74,.14);cursor:pointer;white-space:nowrap;display:none;align-items:center;gap:10px}
 .rc-teaser .rc-tx{color:#9A96C2;font-weight:800;font-size:12px;padding:2px 4px}
 .rc-win{position:absolute;right:0;bottom:70px;width:340px;max-width:calc(100vw - 24px);height:460px;max-height:calc(100vh - 104px);background:#fff;border-radius:18px;box-shadow:0 18px 50px rgba(34,26,74,.28);display:flex;flex-direction:column;overflow:hidden;border:1px solid #EFEDFA;animation:rcIn .22s ease}
+.rc-win[hidden]{display:none}
 @keyframes rcIn{from{opacity:0;transform:translateY(14px) scale(.97)}to{opacity:1;transform:none}}
 .rc-head{background:linear-gradient(135deg,#2A2158,#221A4A);color:#fff;padding:12px 14px;display:flex;align-items:center;gap:10px;flex:none}
 .rc-ava{width:36px;height:36px;border-radius:12px;background:linear-gradient(135deg,#F5A623,#FFC94D);display:flex;align-items:center;justify-content:center;font-size:20px;flex:none}
@@ -385,7 +387,7 @@ footer .f-logo{display:flex;align-items:center;gap:8px;color:#fff;font-weight:90
   <div class="wrap">
     <div>
       <span class="badge">🚀 Открыт набор в ранний доступ</span>
-      <h1>Деньги — это навык.<br>Научим <em>со 2 класса</em>.</h1>
+      <h1><span class="l1">Деньги — это навык.</span><br>Научим <em>со 2 класса</em>.</h1>
       <p class="sub">«Рублик» — онлайн-курс финансовой грамотности для детей 8–17 лет. Со 2 по 11 класс — с примерами из реальной жизни: рубли, детская карта и кэшбэк, «Авито», первые вклады.</p>
       <div class="hero-cta">
         <a class="btn amber big" href="#demo" data-ym-goal="hero_demo">🎮 Попробовать демо-урок</a>
