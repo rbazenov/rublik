@@ -296,6 +296,7 @@ details p{margin-top:10px;color:#5C5C7A;max-width:720px;font-size:15.5px}
 .cta h2{font-size:clamp(28px,4vw,44px);font-weight:900;letter-spacing:-.02em;line-height:1.1}
 .cta p{color:#C9C3F5;margin:16px auto 0;max-width:520px;font-size:17px}
 .cta-form{display:flex;gap:10px;max-width:470px;margin:30px auto 0;flex-wrap:wrap;justify-content:center}
+.cta-form .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
 .cta-form input{flex:1;min-width:230px;border:0;border-radius:14px;padding:15px 17px;font:inherit;font-size:15px;outline:none;color:#221A4A;font-weight:600}
 .cta-ok{display:none;margin-top:30px;background:rgba(31,181,116,.15);border:1px solid #1FB574;color:#7CE8B5;font-weight:800;border-radius:16px;padding:16px 22px;max-width:470px;margin-left:auto;margin-right:auto}
 .cta small{display:block;margin-top:18px;color:#8F87C7;font-size:12.5px}
@@ -603,6 +604,7 @@ footer .f-logo{display:flex;align-items:center;gap:8px;color:#fff;font-weight:90
     <p>Оставьте почту — напишем, когда откроется ранний доступ, и подарим первый уровень со скидкой 40%.</p>
     <form class="cta-form" id="earlyForm">
       <input type="email" placeholder="Ваш e-mail" required>
+      <input class="hp" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
       <button class="btn amber" type="submit" data-ym-goal="early_submit">Записаться</button>
     </form>
     <div class="cta-ok" id="ctaOk">🎉 Готово! Мы напишем вам, когда откроется ранний доступ. Рубль вам в копилку!</div>
@@ -634,11 +636,30 @@ function lsSetLocal(k,v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catc
   $all('.reveal').forEach(function(el){ io.observe(el); });
 })();
 
-/* форма раннего доступа (демо) */
+/* форма раннего доступа → Google-таблица */
+var LEADS_URL = 'https://script.google.com/macros/s/AKfycbw3Rv-IgJNG-Nh0RsIGRbstn6-DtIwJrThFtMKmaL2THLkAsKVGttvi0uRDdbXqt3Nc/exec';
 document.getElementById('earlyForm').addEventListener('submit', function(ev){
   ev.preventDefault();
-  this.style.display = 'none';
-  document.getElementById('ctaOk').style.display = 'block';
+  var form = this;
+  var input = form.querySelector('input[type=email]');
+  var email = (input.value || '').trim();
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { input.focus(); return; }
+  if (form.dataset.sent === '1') return;
+  form.dataset.sent = '1';
+  var btn = form.querySelector('button');
+  btn.disabled = true; btn.style.opacity = '.6';
+  var ok = function(){
+    form.style.display = 'none';
+    document.getElementById('ctaOk').style.display = 'block';
+  };
+  /* honeypot заполнен — бот: показываем «успех», но ничего не отправляем */
+  if (form.querySelector('.hp').value) { ok(); return; }
+  fetch(LEADS_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: {'Content-Type': 'text/plain;charset=utf-8'},
+    body: JSON.stringify({email: email, page: location.href})
+  }).then(ok, ok);
 });
 
 /* вкладки демо */
